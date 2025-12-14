@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number System Converter</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #636763;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.converter {
+    background: palevioletred;
+    padding: 25px;
+    width: 350px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.result {
+    margin-top: 15px;
+    padding: 10px;
+    background: grey;
+    border-radius: 4px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="converter">
+    <h2>Number System Converter</h2>
+
+    <label>Enter Number:</label>
+    <input type="text" id="numberInput" placeholder="Enter value">
+
+    <label>From Base:</label>
+    <select id="fromBase">
+        <option value="10">Decimal</option>
+        <option value="2">Binary</option>
+        <option value="8">Octal</option>
+        <option value="16">Hexadecimal</option>
+    </select>
+
+    <button onclick="convertNumber()">Convert</button>
+
+    <div class="result" id="result">
+        <p>Answer:</p>
+    </div>
+</div>
+
+<script>
+function convertNumber() {
+    let number = document.getElementById("numberInput").value;
+    let fromBase = document.getElementById("fromBase").value;
+
+    if (number === "") {
+        alert("Please enter a number");
+        return;
+    }
+
+    let decimalValue = parseInt(number, fromBase);
+
+    if (isNaN(decimalValue)) {
+        alert("Invalid number for selected base");
+        return;
+    }
+
+    document.getElementById("result").innerHTML = `
+        <p><strong>Decimal:</strong> ${decimalValue}</p>
+        <p><strong>Binary:</strong> ${decimalValue.toString(2)}</p>
+        <p><strong>Octal:</strong> ${decimalValue.toString(8)}</p>
+        <p><strong>Hexadecimal:</strong> ${decimalValue.toString(16).toUpperCase()}</p>
+    `;
+}
+</script>
+
+</body>
+</html>
